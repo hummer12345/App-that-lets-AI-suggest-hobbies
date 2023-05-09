@@ -1,0 +1,72 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: ./laravel
+      dockerfile: ../docker/laravel/Dockerfile
+    image: laravel
+    container_name: laravel
+    restart: unless-stopped
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./laravel:/var/www
+    networks:
+      - app-network
+
+  db:
+    image: mysql:5.7.22
+    container_name: db
+    restart: unless-stopped
+    tty: true
+    environment:
+      MYSQL_DATABASE: laravel_chat
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - dbdata:/var/lib/mysql
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx
+    restart: unless-stopped
+    tty: true
+    ports:
+      - '8000:80'
+    volumes:
+      - ./laravel:/var/www
+      - ./nginx:/etc/nginx/conf.d/
+    networks:
+      - app-network
+
+  frontend:
+    image: node:16
+    container_name: react
+    restart: unless-stopped
+    volumes:
+      - ./react:/app
+    ports:
+      - '3000:3000'
+    stdin_open: true
+    tty: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    networks:
+      - app-network
+
+volumes:
+  dbdata:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge
