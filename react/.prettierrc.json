@@ -1,11 +1,8 @@
 {
-  "extends": [
-    "plugin:react/recommended",
-    "airbnb",
-    "airbnb-typescript",
-    "prettier"
-  ],
-
-  "semi": true,
-  "singleQuote": true
+  "trailingomma": "all",
+  "endOfLine":"auto",
+  "semi": false,
+  "singleQuote": true,
+  "printWidth": 80,
+  "tabWidth": 2
 }
