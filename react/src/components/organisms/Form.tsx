@@ -1,6 +1,9 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import Button from '../atoms/Button'
+import Label from '../atoms/Label'
+import SelectBox from '../atoms/SelectBox'
+import TextBox from '../atoms/TextBox'
 
 const Form = () => {
   const {
@@ -16,27 +19,15 @@ const Form = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label>
-        Name:
-        <input type="text" {...register('name', { required: true })} />
-      </label>
-      {errors.name && <p>This field is required</p>}
-
-      <label>
-        Email:
-        <input
-          type="email"
-          {...register('email', { required: true, pattern: /^\S+@\S+$/i })}
-        />
-      </label>
-      {errors.email && errors.email.type === 'required' && (
-        <p>This field is required</p>
-      )}
-      {errors.email && errors.email.type === 'pattern' && (
-        <p>Invalid email format</p>
-      )}
-
+    <form onSubmit={handleSubmit(onSubmit)} className="">
+      <Label tagName={'現在の興味・関心'} isRequired={false} />
+      <TextBox />
+      <TextBox />
+      <Label tagName={'過去の興味・関心'} isRequired={false} />
+      <TextBox />
+      <TextBox />
+      <Label tagName={'1日に使える時間'} isRequired={false} />
+      <SelectBox />
       <Button
         text={'新しい趣味を見つけてみよう！'}
         bgColor={'orange'}
