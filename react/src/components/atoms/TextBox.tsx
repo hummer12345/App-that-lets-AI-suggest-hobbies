@@ -4,15 +4,17 @@ interface TextBoxProps extends ComponentPropsWithoutRef<'input'> {
   type: 'text'
 }
 
-//const TextBox = forwardRef<HTMLInputElement, TextBoxProps>(
-//  ({ ...props }, ref) => {
-//    return <input className="border-color: black" {...props} ref={ref} />
-//  }
-//)
-
-const TextBox = () => {
-  return <input className="border border-black rounded" />
-}
+const TextBox = forwardRef<HTMLInputElement, TextBoxProps>(
+  ({ ...props }, ref) => {
+    return (
+      <input
+        className="border border-gray-700 rounded-lg w-56 h-10 px-2"
+        {...props}
+        ref={ref}
+      />
+    )
+  }
+)
 
 TextBox.displayName = 'TextBox'
 

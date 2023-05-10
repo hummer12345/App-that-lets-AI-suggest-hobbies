@@ -8,12 +8,14 @@ type ButtonProps = {
 
 const Button: React.FC<ButtonProps> = ({ text, bgColor, onClick }) => {
   return (
-    <button
-      onClick={onClick}
-      className={`bg-${bgColor} text-white font-bold py-2 px-4 rounded`}
-    >
-      {text}
-    </button>
+    <div className="flex justify-center">
+      <button
+        onClick={onClick}
+        className={`bg-${bgColor} text-white text-xl font-bold h-14 py-4 px-4 rounded-lg`}
+      >
+        {text}
+      </button>
+    </div>
   )
 }
 
