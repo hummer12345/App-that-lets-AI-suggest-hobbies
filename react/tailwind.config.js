@@ -8,6 +8,9 @@ export const theme = {
       indigo: '#172c66',
       gray: '#eff0f3',
     },
+    screens: {
+      xs: '360px',
+    },
   },
 }
 export const plugins = []

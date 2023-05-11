@@ -22,29 +22,33 @@ const Form = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col justify-center text-left px-[10%] py-5 h-800 w-full rounded-lg border-t-8 border-b-8 border-black bg-white"
+      className="flex flex-col justify-center max-sm:text-left px-[10%] py-5 w-full rounded-lg border-t-8 border-b-8 border-black bg-white"
     >
       <Label tagName={'現在の興味・関心'} />
       <Spacer size={15} />
-      <div className="flex justify-around">
+      <div className="flex justify-between max-sm:flex-col max-sm:justify-center max-sm:items-center px-8">
         <TextBox type={'text'} />
         <TextBox type={'text'} />
       </div>
       <Spacer size={30} />
       <Label tagName={'過去の興味・関心'} />
       <Spacer size={15} />
-      <div className="flex justify-around">
+      <div className="flex justify-between max-sm:flex-col max-sm:justify-center max-sm:items-center px-8">
         <TextBox type={'text'} />
         <TextBox type={'text'} />
       </div>
       <Spacer size={30} />
       <Label tagName={'1日に使える時間'} />
       <Spacer size={15} />
-      <SelectBox />
+      <div className="flex max-sm:justify-center max-sm:items-center px-8">
+        <SelectBox />
+      </div>
       <Spacer size={30} />
       <Label tagName={'予算'} />
       <Spacer size={15} />
-      <SelectBox />
+      <div className="flex max-sm:justify-center max-sm:items-center px-8">
+        <SelectBox />
+      </div>
       <Spacer size={40} />
       <Button
         text={'新しい趣味を見つけてみよう！'}
